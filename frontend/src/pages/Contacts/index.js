@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useReducer, useContext, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  useContext,
+  useRef,
+} from "react";
 
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
@@ -14,6 +20,10 @@ import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import SearchIcon from "@material-ui/icons/Search";
+import ImportContacts from "@material-ui/icons/ImportContacts";
+import Csv from "@material-ui/icons/PostAdd";
+import Add from "@material-ui/icons/Add";
+import ExportContacts from "@material-ui/icons/ExpandLess";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
@@ -36,7 +46,7 @@ import { Can } from "../../components/Can";
 import NewTicketModal from "../../components/NewTicketModal";
 import { SocketContext } from "../../context/Socket/SocketContext";
 
-import {CSVLink} from "react-csv";
+import { CSVLink } from "react-csv";
 
 const reducer = (state, action) => {
   if (action.type === "LOAD_CONTACTS") {
@@ -154,7 +164,7 @@ const Contacts = () => {
     return () => {
       socket.disconnect();
     };
-  }, [ socketManager]);
+  }, [socketManager]);
 
   const handleSearch = (event) => {
     setSearchParam(event.target.value.toLowerCase());
@@ -209,7 +219,7 @@ const Contacts = () => {
     setSearchParam("");
     setPageNumber(1);
   };
-  
+
   const handleimportContact = async () => {
     try {
       if (!!fileUploadRef.current.files[0]) {
@@ -280,6 +290,7 @@ const Contacts = () => {
         <Title>{i18n.t("contacts.title")}</Title>
         <MainHeaderButtonsWrapper>
           <TextField
+            style={{ width: "50%" }}
             placeholder={i18n.t("contacts.searchPlaceholder")}
             type="search"
             value={searchParam}
@@ -292,37 +303,47 @@ const Contacts = () => {
               ),
             }}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => setConfirmOpen(true)}
-          >
-            {i18n.t("contacts.buttons.import")}
-          </Button>
-          <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            fileUploadRef.current.value = null;
-            fileUploadRef.current.click();
-          }}
-      >
-        {i18n.t("contacts.buttons.importSheet")}
-      </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenContactModal}
-          >
-            {i18n.t("contacts.buttons.add")}
-          </Button>
+          <div style={{ display: "flex", justifyContent: "space-between", width: "30%" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={(e) => setConfirmOpen(true)}
+            >
+              <ImportContacts style={{ color: "white" }} />
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                fileUploadRef.current.value = null;
+                fileUploadRef.current.click();
+              }}
+            >
+              <Csv style={{ color: "white" }} />
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleOpenContactModal}
+            >
+              <Add style={{ color: "white" }} />
+            </Button>
 
-         <CSVLink style={{ textDecoration:'none'}} separator=";" filename={'whaticket.csv'} data={contacts.map((contact) => ({ name: contact.name, number: contact.number, email: contact.email }))}>
-          <Button	variant="contained" color="primary"> 
-          EXPORTAR CONTATOS 
-          </Button>
-          </CSVLink>		  
-
+            <CSVLink
+              style={{ textDecoration: "none" }}
+              separator=";"
+              filename={"whaticket.csv"}
+              data={contacts.map((contact) => ({
+                name: contact.name,
+                number: contact.number,
+                email: contact.email,
+              }))}
+            >
+              <Button variant="contained" color="primary">
+                <ExportContacts style={{ color: "white" }} />
+              </Button>
+            </CSVLink>
+          </div>
         </MainHeaderButtonsWrapper>
       </MainHeader>
       <Paper
@@ -332,15 +353,15 @@ const Contacts = () => {
       >
         <>
           <input
-              style={{ display: "none" }}
-              id="upload"
-              name="file"
-              type="file"
-              accept=".xls,.xlsx"
-              onChange={() => {
-                setConfirmOpen(true);
-              }}
-              ref={fileUploadRef}
+            style={{ display: "none" }}
+            id="upload"
+            name="file"
+            type="file"
+            accept=".xls,.xlsx"
+            onChange={() => {
+              setConfirmOpen(true);
+            }}
+            ref={fileUploadRef}
           />
         </>
         <Table size="small">

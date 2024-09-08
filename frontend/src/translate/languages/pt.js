@@ -9,7 +9,7 @@ const messages = {
         },
         form: {
           name: "Nome",
-          email: "Email",
+          email: "Aluno",
           password: "Senha",
         },
         buttons: {
@@ -162,7 +162,7 @@ const messages = {
           deleted: "Contato excluído com sucesso!",
 		  deletedAll: "Todos contatos excluídos com sucesso!",
         },
-		  searchPlaceholder: "Pesquisar...",
+		  searchPlaceholder: "Digite o nome do aluno ou o nome do contato",
           confirmationModal: {
           deleteTitle: "Deletar ",
           deleteAllTitle: "Deletar Todos",
@@ -181,7 +181,7 @@ const messages = {
         table: {
           name: "Nome",
           whatsapp: "WhatsApp",
-          email: "Email",
+          email: "Aluno",
           actions: "Ações",
         },
       },
@@ -275,7 +275,7 @@ const messages = {
           extraInfo: "Informações adicionais",
           name: "Nome",
           number: "Número do Whatsapp",
-          email: "Email",
+          email: "Aluno",
           extraName: "Nome do campo",
           extraValue: "Valor",
           whatsapp: "Conexão Origem: "
@@ -781,7 +781,7 @@ const messages = {
         table: {
 		  id: "ID",
           name: "Nome",
-          email: "Email",
+          email: "Aluno",
           profile: "Perfil",
           actions: "Ações",
         },

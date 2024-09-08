@@ -54,11 +54,11 @@ const useStyles = makeStyles(theme => ({
 
 const ContactSchema = Yup.object().shape({
 	name: Yup.string()
-		.min(2, "Too Short!")
-		.max(50, "Too Long!")
-		.required("Required"),
-	number: Yup.string().min(8, "Too Short!").max(50, "Too Long!"),
-	email: Yup.string().email("Invalid email"),
+		.min(2, "Nome muito curto!")
+		.max(50, "Nome muito longo!")
+		.required("Obrigatório!"),
+	number: Yup.string().min(8, "Número muito curto!").max(50, "Número muito longo!"),
+	email: Yup.string(),
 });
 
 const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
@@ -179,26 +179,26 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
 										name="email"
 										error={touched.email && Boolean(errors.email)}
 										helperText={touched.email && errors.email}
-										placeholder="Email address"
+										placeholder="Nome do aluno"
 										fullWidth
 										margin="dense"
 										variant="outlined"
 									/>
 								</div>
-								<Typography
+								{/* <Typography
 									style={{ marginBottom: 8, marginTop: 12 }}
 									variant="subtitle1"
 								>
 									{i18n.t("contactModal.form.whatsapp")} {contact?.whatsapp ? contact?.whatsapp.name : ""}
-								</Typography>
-								<Typography
+								</Typography> */}
+								{/* <Typography
 									style={{ marginBottom: 8, marginTop: 12 }}
 									variant="subtitle1"
 								>
 									{i18n.t("contactModal.form.extraInfo")}
-								</Typography>
+								</Typography> */}
 
-								<FieldArray name="extraInfo">
+								{/* <FieldArray name="extraInfo">
 									{({ push, remove }) => (
 										<>
 											{values.extraInfo &&
@@ -244,7 +244,7 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
 											</div>
 										</>
 									)}
-								</FieldArray>
+								</FieldArray> */}
 							</DialogContent>
 							<DialogActions>
 								<Button

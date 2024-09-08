@@ -56,7 +56,7 @@ const ContactSchema = Yup.object().shape({
 		.max(50, "Too Long!")
 		.required("Required"),
 	number: Yup.string().min(8, "Too Short!").max(50, "Too Long!"),
-	email: Yup.string().email("Invalid email"),
+	email: Yup.string(),
 });
 
 export function ContactForm ({ initialContact, onSave, onCancel }) {
