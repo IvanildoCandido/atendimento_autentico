@@ -93,18 +93,10 @@ body {
   border-radius: 30px;
   width: 100%;
   max-width: 500px;
-  padding-bottom: 8px;
   margin: 0 10px;
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
-
-.container-header-box {
-  display: flex;
-  margin-top: -18px;
-  padding-left: 40px;
-  padding-right: 40px;
-  width: 100%;
-}
-
 .link-create-count {
   background-color: rgb(224, 224, 224);
   border-end-start-radius: 30px;

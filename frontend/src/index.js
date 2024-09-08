@@ -11,12 +11,3 @@ ReactDOM.render(
 	document.getElementById("root")
 );
 
-// ReactDOM.render(
-// 	<React.StrictMode>
-// 		<CssBaseline>
-// 			<App />
-// 		</CssBaseline>,
-//   </React.StrictMode>
-
-// 	document.getElementById("root")
-// );
