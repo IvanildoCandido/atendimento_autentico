@@ -17,8 +17,8 @@ import SimpleListService, {
   SearchContactParams
 } from "../services/ContactServices/SimpleListService";
 import ContactCustomField from "../models/ContactCustomField";
-import {head} from "lodash";
-import {ImportContacts} from "../services/ContactServices/ImportContacts";
+import { head } from "lodash";
+import { ImportContacts } from "../services/ContactServices/ImportContacts";
 
 type IndexQuery = {
   searchParam: string;
@@ -105,10 +105,13 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
   });
 
   const io = getIO();
-  io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "create",
-    contact
-  });
+  io.to(`company-${companyId}-mainchannel`).emit(
+    `company-${companyId}-contact`,
+    {
+      action: "create",
+      contact
+    }
+  );
 
   return res.status(200).json(contact);
 };
@@ -157,10 +160,13 @@ export const update = async (
   });
 
   const io = getIO();
-  io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "update",
-    contact
-  });
+  io.to(`company-${companyId}-mainchannel`).emit(
+    `company-${companyId}-contact`,
+    {
+      action: "update",
+      contact
+    }
+  );
 
   return res.status(200).json(contact);
 };
@@ -177,10 +183,13 @@ export const remove = async (
   await DeleteContactService(contactId);
 
   const io = getIO();
-  io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "delete",
-    contactId
-  });
+  io.to(`company-${companyId}-mainchannel`).emit(
+    `company-${companyId}-contact`,
+    {
+      action: "delete",
+      contactId
+    }
+  );
 
   return res.status(200).json({ message: "Contact deleted" });
 };
@@ -203,10 +212,13 @@ export const upload = async (req: Request, res: Response) => {
 
   const io = getIO();
 
-  io.to(`company-${companyId}-mainchannel`).emit(`company-${companyId}-contact`, {
-    action: "create",
-    records: response
-  });
+  io.to(`company-${companyId}-mainchannel`).emit(
+    `company-${companyId}-contact`,
+    {
+      action: "create",
+      records: response
+    }
+  );
 
   return res.status(200).json(response);
 };
@@ -223,11 +235,11 @@ export const getContactVcard = async (
   const numberDDD = vNumber.toString().substr(2, 2);
   const numberUser = vNumber.toString().substr(-8, 8);
 
-  if (numberDDD <= '30' && numberDDI === '55') {
-    console.log("menor 30")
+  if (numberDDD <= "30" && numberDDI === "55") {
+    console.log("menor 30");
     vNumber = `${numberDDI + numberDDD + 9 + numberUser}@s.whatsapp.net`;
-  } else if (numberDDD > '30' && numberDDI === '55') {
-    console.log("maior 30")
+  } else if (numberDDD > "30" && numberDDI === "55") {
+    console.log("maior 30");
     vNumber = `${numberDDI + numberDDD + numberUser}@s.whatsapp.net`;
   } else {
     vNumber = `${number}@s.whatsapp.net`;
