@@ -386,7 +386,7 @@ const messages = {
         },
       },
       ticketsQueueSelect: {
-        placeholder: "Filas",
+        placeholder: "Setores",
       },
       tickets: {
         toasts: {
@@ -446,7 +446,7 @@ const messages = {
           tickets: "Atendimentos",
           quickMessages: "Respostas Rápidas",
           contacts: "Contatos",
-          queues: "Filas & Chatbot",
+          queues: "Setores & Chatbot",
           tags: "Tags",
           administration: "Administração",
           users: "Usuários",
@@ -488,7 +488,7 @@ const messages = {
         confirmationModal: {
           deleteTitle: "Excluir",
           deleteMessage:
-            "Você tem certeza? Essa ação não pode ser revertida! e será removida das filas e conexões vinculadas",
+            "Você tem certeza? Essa ação não pode ser revertida! e será removida das setores e conexões vinculadas",
         },
       },
       files: {
@@ -755,7 +755,7 @@ const messages = {
         title: "Configurações de Campanhas",
       },
       queues: {
-        title: "Filas & Chatbot",
+        title: "Setores & Chatbot",
         table: {
 		  id:"ID",
           name: "Nome",
@@ -774,7 +774,7 @@ const messages = {
         },
       },
       queueSelect: {
-        inputLabel: "Filas",
+        inputLabel: "Setores",
       },
       users: {
         title: "Usuários",
