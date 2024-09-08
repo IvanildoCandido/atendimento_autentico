@@ -32,13 +32,13 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import ContactTag from "../ContactTag";
 import TicketMessagesDialog from "../TicketMessagesDialog";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   ticket: {
-    position: "relative"
+    position: "relative",
   },
 
   pendingTicket: {
-    cursor: "unset"
+    cursor: "unset",
   },
   queueTag: {
     background: "#FCFCFC",
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 5,
     borderRadius: 3,
     fontSize: "0.8em",
-    whiteSpace: "nowrap"
+    whiteSpace: "nowrap",
   },
   noTicketsDiv: {
     display: "flex",
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     margin: 40,
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   newMessagesCount: {
     position: "absolute",
@@ -67,13 +67,13 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "auto",
     top: "10px",
     left: "20px",
-    borderRadius: 0
+    borderRadius: 0,
   },
   noTicketsText: {
     textAlign: "center",
     color: "rgb(104, 121, 146)",
     fontSize: "14px",
-    lineHeight: "1.4"
+    lineHeight: "1.4",
   },
   connectionTag: {
     background: "green",
@@ -85,26 +85,22 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 5,
     borderRadius: 3,
     fontSize: "0.8em",
-    whiteSpace: "nowrap"
+    whiteSpace: "nowrap",
   },
   noTicketsTitle: {
     textAlign: "center",
     fontSize: "16px",
     fontWeight: "600",
-    margin: "0px"
+    margin: "0px",
   },
 
   contactNameWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    marginLeft: "5px"
+    marginLeft: "5px",
   },
 
   lastMessageTime: {
-    justifySelf: "flex-end",
-    textAlign: "right",
-    position: "relative",
-    top: -21,
     background: "#333333",
     color: "#ffffff",
     border: "1px solid #3a3b6c",
@@ -112,35 +108,29 @@ const useStyles = makeStyles(theme => ({
     padding: 1,
     paddingLeft: 5,
     paddingRight: 5,
-    fontSize: "0.9em"
+    fontSize: "0.9em",
   },
 
   closedBadge: {
     alignSelf: "center",
     justifySelf: "flex-end",
     marginRight: 32,
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
 
   contactLastMessage: {
     paddingRight: "0%",
-    marginLeft: "5px"
+    marginLeft: "5px",
   },
 
   badgeStyle: {
     color: "white",
-    backgroundColor: green[500]
+    backgroundColor: green[500],
   },
 
-  acceptButton: {
-    position: "absolute",
-    right: "108px"
-  },
+  acceptButton: {},
 
-  acceptButton: {
-    position: "absolute",
-    left: "50%"
-  },
+  acceptButton: {},
 
   ticketQueueColor: {
     flex: "none",
@@ -148,26 +138,24 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     position: "absolute",
     top: "0%",
-    left: "0%"
+    left: "0%",
   },
 
   ticketInfo: {
     position: "relative",
-    top: -13
+    top: -13,
   },
   secondaryContentSecond: {
     display: "flex",
-    // marginTop: 5,
-    //marginLeft: "5px",
     alignItems: "flex-start",
     flexWrap: "wrap",
     flexDirection: "row",
-    alignContent: "flex-start"
+    alignContent: "flex-start",
   },
   ticketInfo1: {
     position: "relative",
     top: 13,
-    right: 0
+    right: 0,
   },
   Radiusdot: {
     "& .MuiBadge-badge": {
@@ -175,12 +163,12 @@ const useStyles = makeStyles(theme => ({
       position: "inherit",
       height: 16,
       margin: 2,
-      padding: 3
+      padding: 3,
     },
     "& .MuiBadge-anchorOriginTopRightRectangle": {
-      transform: "scale(1) translate(0%, -40%)"
-    }
-  }
+      transform: "scale(1) translate(0%, -40%)",
+    },
+  },
 }));
 {
   /*PACK TYPEBOT INSERIDO O dentro do const handleChangeTab*/
@@ -225,7 +213,7 @@ const TicketListItemCustom = ({ ticket }) => {
   {
     /*CÓDIGO NOVO SAUDAÇÃO*/
   }
-  const handleCloseTicket = async id => {
+  const handleCloseTicket = async (id) => {
     setTag(ticket?.tags);
     setLoading(true);
     try {
@@ -235,7 +223,7 @@ const TicketListItemCustom = ({ ticket }) => {
         queueId: ticket?.queue?.id,
         useIntegration: false,
         promptId: null,
-        integrationId: null
+        integrationId: null,
       });
     } catch (err) {
       setLoading(false);
@@ -296,13 +284,13 @@ const TicketListItemCustom = ({ ticket }) => {
     updateLastInteractionLabel();
   }, [ticket]); // Executando apenas uma vez ao montar o componente
 
-  const handleReopenTicket = async id => {
+  const handleReopenTicket = async (id) => {
     setLoading(true);
     try {
       await api.put(`/tickets/${id}`, {
         status: "open",
         userId: user?.id,
-        queueId: ticket?.queue?.id
+        queueId: ticket?.queue?.id,
       });
     } catch (err) {
       setLoading(false);
@@ -314,12 +302,12 @@ const TicketListItemCustom = ({ ticket }) => {
     history.push(`/tickets/${ticket.uuid}`);
   };
 
-  const handleAcepptTicket = async id => {
+  const handleAcepptTicket = async (id) => {
     setLoading(true);
     try {
       await api.put(`/tickets/${id}`, {
         status: "open",
-        userId: user?.id
+        userId: user?.id,
       });
 
       let settingIndex;
@@ -327,7 +315,7 @@ const TicketListItemCustom = ({ ticket }) => {
       try {
         const { data } = await api.get("/settings/");
 
-        settingIndex = data.filter(s => s.key === "sendGreetingAccepted");
+        settingIndex = data.filter((s) => s.key === "sendGreetingAccepted");
       } catch (err) {
         toastError(err);
       }
@@ -349,13 +337,13 @@ const TicketListItemCustom = ({ ticket }) => {
     history.push(`/tickets/${ticket.uuid}`);
   };
 
-  const handleSendMessage = async id => {
+  const handleSendMessage = async (id) => {
     const msg = `{{ms}} *{{name}}*, meu nome é *${user?.name}* e agora vou prosseguir com seu atendimento!`;
     const message = {
       read: 1,
       fromMe: true,
       mediaUrl: "",
-      body: `*Mensagem Automática:*\n${msg.trim()}`
+      body: `*Mensagem Automática:*\n${msg.trim()}`,
     };
     try {
       await api.post(`/messages/${id}`, message);
@@ -367,7 +355,7 @@ const TicketListItemCustom = ({ ticket }) => {
     /*CÓDIGO NOVO SAUDAÇÃO*/
   }
 
-  const handleSelectTicket = ticket => {
+  const handleSelectTicket = (ticket) => {
     const code = uuidv4();
     const { id, uuid } = ticket;
     setCurrentTicket({ id, uuid, code });
@@ -415,13 +403,13 @@ const TicketListItemCustom = ({ ticket }) => {
       <ListItem
         dense
         button
-        onClick={e => {
+        onClick={(e) => {
           if (ticket.status === "pending") return;
           handleSelectTicket(ticket);
         }}
         selected={ticketId && +ticketId === ticket.id}
         className={clsx(classes.ticket, {
-          [classes.pendingTicket]: ticket.status === "pending"
+          [classes.pendingTicket]: ticket.status === "pending",
         })}
       >
         <Tooltip
@@ -438,22 +426,24 @@ const TicketListItemCustom = ({ ticket }) => {
           {ticket.status !== "pending" ? (
             <Avatar
               style={{
-                marginTop: "-20px",
-                marginLeft: "-3px",
-                width: "55px",
-                height: "55px",
-                borderRadius: "10%"
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "60px",
+                height: "60px",
+                borderRadius: "10%",
               }}
               src={ticket?.contact?.profilePicUrl}
             />
           ) : (
             <Avatar
               style={{
-                marginTop: "-30px",
-                marginLeft: "0px",
-                width: "50px",
-                height: "50px",
-                borderRadius: "10%"
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "60px",
+                height: "60px",
+                borderRadius: "10%",
               }}
               src={ticket?.contact?.profilePicUrl}
             />
@@ -486,7 +476,7 @@ const TicketListItemCustom = ({ ticket }) => {
                         color: blue[700],
                         cursor: "pointer",
                         marginLeft: 10,
-                        verticalAlign: "middle"
+                        verticalAlign: "middle",
                       }}
                     />
                   </Tooltip>
@@ -495,176 +485,184 @@ const TicketListItemCustom = ({ ticket }) => {
             </span>
           }
           secondary={
-            <span className={classes.contactNameWrapper}>
-              <Typography
-                className={classes.contactLastMessage}
-                noWrap
-                component="span"
-                variant="body2"
-                color="textSecondary"
-              >
-                {" "}
-                {ticket.lastMessage &&
-                ticket.lastMessage.includes("data:image/png;base64") ? (
-                  <MarkdownWrapper> Localização</MarkdownWrapper>
-                ) : (
-                  <MarkdownWrapper>{ticket.lastMessage}</MarkdownWrapper>
-                )}
-                {ticket.lastMessage && verpreview ? (
-                  <>
-                    {ticket.lastMessage.includes("VCARD") ? (
-                      <MarkdownWrapper>Novo Contato recebido</MarkdownWrapper>
-                    ) : ticket.lastMessage.includes("data:image") ? (
-                      <MarkdownWrapper>Localização recebida</MarkdownWrapper>
-                    ) : (
-                      <MarkdownWrapper>
-                        {ticket.lastMessage.slice(0, 20) + "..."}
-                      </MarkdownWrapper>
-                    )}
-                  </>
-                ) : (
-                  <MarkdownWrapper>---</MarkdownWrapper>
-                )}
-                <span className={classes.secondaryContentSecond}>
-                  {ticket?.whatsapp?.name ? (
-                    <Badge className={classes.connectionTag}>
-                      {ticket?.whatsapp?.name?.toUpperCase()}
-                    </Badge>
+            <>
+              <span className={classes.contactNameWrapper}>
+                <Typography
+                  className={classes.contactLastMessage}
+                  noWrap
+                  component="span"
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  {" "}
+                  {ticket.lastMessage &&
+                  ticket.lastMessage.includes("data:image/png;base64") ? (
+                    <MarkdownWrapper> Localização</MarkdownWrapper>
                   ) : (
-                    <br></br>
+                    <MarkdownWrapper>{ticket.lastMessage}</MarkdownWrapper>
                   )}
-                  {ticketUser ? (
+                  {ticket.lastMessage && verpreview ? (
+                    <>
+                      {ticket.lastMessage.includes("VCARD") ? (
+                        <MarkdownWrapper>Novo Contato recebido</MarkdownWrapper>
+                      ) : ticket.lastMessage.includes("data:image") ? (
+                        <MarkdownWrapper>Localização recebida</MarkdownWrapper>
+                      ) : (
+                        <MarkdownWrapper>
+                          {ticket.lastMessage.slice(0, 20) + "..."}
+                        </MarkdownWrapper>
+                      )}
+                    </>
+                  ) : (
+                    <MarkdownWrapper>---</MarkdownWrapper>
+                  )}
+                  <span className={classes.secondaryContentSecond}>
+                    {ticket?.whatsapp?.name ? (
+                      <Badge className={classes.connectionTag}>
+                        {ticket?.whatsapp?.name?.toUpperCase()}
+                      </Badge>
+                    ) : (
+                      <br></br>
+                    )}
+                    {ticketUser ? (
+                      <Badge
+                        style={{ backgroundColor: "#000000" }}
+                        className={classes.connectionTag}
+                      >
+                        {ticketUser}
+                      </Badge>
+                    ) : (
+                      <br></br>
+                    )}
                     <Badge
-                      style={{ backgroundColor: "#000000" }}
+                      style={{
+                        backgroundColor: ticket.queue?.color || "#7c7c7c",
+                      }}
                       className={classes.connectionTag}
                     >
-                      {ticketUser}
+                      {ticket.queue?.name?.toUpperCase() || "SEM FILA"}
                     </Badge>
-                  ) : (
-                    <br></br>
-                  )}
-                  <Badge
-                    style={{
-                      backgroundColor: ticket.queue?.color || "#7c7c7c"
-                    }}
-                    className={classes.connectionTag}
+                  </span>
+                  <span
+                    style={{ paddingTop: "2px" }}
+                    className={classes.secondaryContentSecond}
                   >
-                    {ticket.queue?.name?.toUpperCase() || "SEM FILA"}
-                  </Badge>
-                </span>
-                <span
-                  style={{ paddingTop: "2px" }}
-                  className={classes.secondaryContentSecond}
-                >
-                  {tag?.map(tag => {
-                    return (
-                      <ContactTag
-                        tag={tag}
-                        key={`ticket-contact-tag-${ticket.id}-${tag.id}`}
-                      />
-                    );
-                  })}
-                </span>
-              </Typography>
+                    {tag?.map((tag) => {
+                      return (
+                        <ContactTag
+                          tag={tag}
+                          key={`ticket-contact-tag-${ticket.id}-${tag.id}`}
+                        />
+                      );
+                    })}
+                  </span>
+                </Typography>
 
-              <Badge
-                className={classes.newMessagesCount}
-                badgeContent={ticket.unreadMessages}
-                classes={{
-                  badge: classes.badgeStyle
+                <Badge
+                  className={classes.newMessagesCount}
+                  badgeContent={ticket.unreadMessages}
+                  classes={{
+                    badge: classes.badgeStyle,
+                  }}
+                />
+              </span>
+              <br></br>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "15px",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: "-20px",
                 }}
-              />
-            </span>
+              >
+                {ticket.status === "pending" && (
+                  <ButtonWithSpinner
+                    //color="primary"
+                    style={{
+                      backgroundColor: "green",
+                      color: "white",
+                      padding: "0px",
+                      // bottom: "12px",
+                      borderRadius: "0px",
+                      // left: "20%",
+                      fontSize: "0.6rem",
+                    }}
+                    variant="contained"
+                    className={classes.acceptButton}
+                    size="small"
+                    loading={loading}
+                    //PACK TYPEBOT INSERIDO O handleChangeTab
+                    onClick={(e) => handleAcepptTicket(ticket.id)}
+                  >
+                    {i18n.t("ticketsList.buttons.accept")}
+                  </ButtonWithSpinner>
+                )}
+                {ticket.status !== "closed" && (
+                  <ButtonWithSpinner
+                    //color="primary"
+                    style={{
+                      backgroundColor: "red",
+                      color: "white",
+                      padding: "0px",
+                      // bottom: "12px",
+                      borderRadius: "0px",
+                      // left: "60%",
+                      fontSize: "0.6rem",
+                    }}
+                    variant="contained"
+                    className={classes.acceptButton}
+                    size="small"
+                    loading={loading}
+                    onClick={(e) => handleCloseTicket(ticket.id)}
+                  >
+                    {i18n.t("ticketsList.buttons.closed")}
+                  </ButtonWithSpinner>
+                )}
+                {ticket.status === "closed" && (
+                  <ButtonWithSpinner
+                    //color="primary"
+                    style={{
+                      backgroundColor: "red",
+                      color: "white",
+                      padding: "0px",
+                      // bottom: "0px",
+                      borderRadius: "0px",
+                      // left: "8px",
+                      fontSize: "0.6rem",
+                    }}
+                    variant="contained"
+                    className={classes.acceptButton}
+                    size="small"
+                    loading={loading}
+                    onClick={(e) => handleReopenTicket(ticket.id)}
+                  >
+                    {i18n.t("ticketsList.buttons.reopen")}
+                  </ButtonWithSpinner>
+                )}
+                {ticket.lastMessage && (
+                  <>
+                    <Typography
+                      className={classes.lastMessageTime}
+                      component="span"
+                      variant="body2"
+                      color="textSecondary"
+                    >
+                      {isSameDay(parseISO(ticket.updatedAt), new Date()) ? (
+                        <>{format(parseISO(ticket.updatedAt), "HH:mm")}</>
+                      ) : (
+                        <>{format(parseISO(ticket.updatedAt), "dd/MM/yyyy")}</>
+                      )}
+                    </Typography>
+
+                    <br />
+                  </>
+                )}
+              </div>
+            </>
           }
         />
-        <ListItemSecondaryAction>
-          {ticket.lastMessage && (
-            <>
-              <Typography
-                className={classes.lastMessageTime}
-                component="span"
-                variant="body2"
-                color="textSecondary"
-              >
-                {isSameDay(parseISO(ticket.updatedAt), new Date()) ? (
-                  <>{format(parseISO(ticket.updatedAt), "HH:mm")}</>
-                ) : (
-                  <>{format(parseISO(ticket.updatedAt), "dd/MM/yyyy")}</>
-                )}
-              </Typography>
-
-              <br />
-            </>
-          )}
-        </ListItemSecondaryAction>
-        <span className={classes.secondaryContentSecond}>
-          {ticket.status === "pending" && (
-            <ButtonWithSpinner
-              //color="primary"
-              style={{
-                backgroundColor: "green",
-                color: "white",
-                padding: "0px",
-                bottom: "17px",
-                borderRadius: "0px",
-                left: "8px",
-                fontSize: "0.6rem"
-              }}
-              variant="contained"
-              className={classes.acceptButton}
-              size="small"
-              loading={loading}
-              //PACK TYPEBOT INSERIDO O handleChangeTab
-              onClick={e => handleAcepptTicket(ticket.id)}
-            >
-              {i18n.t("ticketsList.buttons.accept")}
-            </ButtonWithSpinner>
-          )}
-          {ticket.status !== "closed" && (
-            <ButtonWithSpinner
-              //color="primary"
-              style={{
-                backgroundColor: "red",
-                color: "white",
-                padding: "0px",
-                bottom: "0px",
-                borderRadius: "0px",
-                left: "8px",
-                fontSize: "0.6rem"
-              }}
-              variant="contained"
-              className={classes.acceptButton}
-              size="small"
-              loading={loading}
-              onClick={e => handleCloseTicket(ticket.id)}
-            >
-              {i18n.t("ticketsList.buttons.closed")}
-            </ButtonWithSpinner>
-          )}
-          {ticket.status === "closed" && (
-            <ButtonWithSpinner
-              //color="primary"
-              style={{
-                backgroundColor: "red",
-                color: "white",
-                padding: "0px",
-                bottom: "0px",
-                borderRadius: "0px",
-                left: "8px",
-                fontSize: "0.6rem"
-              }}
-              variant="contained"
-              className={classes.acceptButton}
-              size="small"
-              loading={loading}
-              onClick={e => handleReopenTicket(ticket.id)}
-            >
-              {i18n.t("ticketsList.buttons.reopen")}
-            </ButtonWithSpinner>
-          )}
-        </span>
       </ListItem>
-
       <Divider variant="inset" component="li" />
     </React.Fragment>
   );
