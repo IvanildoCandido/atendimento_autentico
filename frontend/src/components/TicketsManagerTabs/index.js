@@ -274,13 +274,13 @@ const TicketsManagerTabs = () => {
           </div>
         ) : (
           <>
-            <Button
+            {/* <Button
               variant="outlined"
               color="primary"
               onClick={() => setNewTicketModalOpen(true)}
             >
               {i18n.t("ticketsManager.buttons.newTicket")}
-            </Button>
+            </Button> */}
             <Can
               role={user.profile}
               perform="tickets-manager:showall"

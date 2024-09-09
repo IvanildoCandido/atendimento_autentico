@@ -303,15 +303,22 @@ const Contacts = () => {
               ),
             }}
           />
-          <div style={{ display: "flex", justifyContent: "space-between", width: "30%" }}>
-            <Button
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              width: "30%",
+              color: "white",
+            }}
+          >
+            {/* <Button
               variant="contained"
               color="primary"
               onClick={(e) => setConfirmOpen(true)}
             >
               <ImportContacts style={{ color: "white" }} />
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               variant="contained"
               color="primary"
               onClick={() => {
@@ -320,16 +327,17 @@ const Contacts = () => {
               }}
             >
               <Csv style={{ color: "white" }} />
-            </Button>
+            </Button> */}
             <Button
               variant="contained"
               color="primary"
               onClick={handleOpenContactModal}
             >
-              <Add style={{ color: "white" }} />
+              <Add style={{ color: "white" }} />{" "}
+              <span style={{ color: "white", marginLeft: 5 }}>ADICIONAR</span>
             </Button>
 
-            <CSVLink
+            {/* <CSVLink
               style={{ textDecoration: "none" }}
               separator=";"
               filename={"whaticket.csv"}
@@ -342,7 +350,7 @@ const Contacts = () => {
               <Button variant="contained" color="primary">
                 <ExportContacts style={{ color: "white" }} />
               </Button>
-            </CSVLink>
+            </CSVLink> */}
           </div>
         </MainHeaderButtonsWrapper>
       </MainHeader>
