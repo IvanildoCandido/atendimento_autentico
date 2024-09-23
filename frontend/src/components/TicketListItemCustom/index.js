@@ -462,6 +462,8 @@ const TicketListItemCustom = ({ ticket }) => {
                 <strong>
                   {ticket.contact.name} {lastInteractionLabel}
                 </strong>
+                <br></br>
+                <span> Aluno: {ticket.contact.email}</span>
                 <ListItemSecondaryAction>
                   <Box className={classes.ticketInfo1}>
                     {renderTicketInfo()}
