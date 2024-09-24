@@ -311,29 +311,28 @@ const Contacts = () => {
               color: "white",
             }}
           >
-            <div style={{ display: "none" }} className="systech">
-              <Tooltip title="Importar contatos do telefone" arrow>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={(e) => setConfirmOpen(true)}
-                >
-                  <ImportContacts style={{ color: "white" }} />
-                </Button>
-              </Tooltip>
-              <Tooltip title="Importar contatos de um arquivo" arrow>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    fileUploadRef.current.value = null;
-                    fileUploadRef.current.click();
-                  }}
-                >
-                  <Csv style={{ color: "white" }} />
-                </Button>
-              </Tooltip>
-            </div>
+            <Tooltip title="Importar contatos do telefone" arrow>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={(e) => setConfirmOpen(true)}
+              >
+                <ImportContacts style={{ color: "white" }} />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Importar contatos de um arquivo" arrow>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  fileUploadRef.current.value = null;
+                  fileUploadRef.current.click();
+                }}
+              >
+                <Csv style={{ color: "white" }} />
+              </Button>
+            </Tooltip>
+
             <Tooltip title="Adicionar contato" arrow>
               <Button
                 variant="contained"
@@ -344,7 +343,7 @@ const Contacts = () => {
               </Button>
             </Tooltip>
 
-            {/* <CSVLink
+            <CSVLink
               style={{ textDecoration: "none" }}
               separator=";"
               filename={"whaticket.csv"}
@@ -354,10 +353,12 @@ const Contacts = () => {
                 email: contact.email,
               }))}
             >
-              <Button variant="contained" color="primary">
-                <ExportContacts style={{ color: "white" }} />
-              </Button>
-            </CSVLink> */}
+              <Tooltip title="Exportar contatos" arrow>
+                <Button variant="contained" color="primary">
+                  <ExportContacts style={{ color: "white" }} />
+                </Button>
+              </Tooltip>
+            </CSVLink>
           </div>
         </MainHeaderButtonsWrapper>
       </MainHeader>
